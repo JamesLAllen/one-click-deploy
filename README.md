@@ -1,4 +1,4 @@
-# Vendure One-Click Deploy
+# Vendure One-Click Deploy with Redis and TypeSense
 
 This is a repo which can be used by "one click deploy" features of cloud hosts in order to rapidly set
 up a Vendure instance that is populated with test data.
