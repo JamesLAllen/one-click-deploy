@@ -37,3 +37,30 @@ services:
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: vendure
+  typesense:
+    image: typesense/typesense:0.25.2
+    restart: on-failure
+    ports:
+      - '8108:8108'
+    volumes:
+      - ./typesense-data:/data
+    command: '--data-dir /data --api-key=hToGoU0GZghICgw2B3qfrLnDQSpz15Qw --enable-cors'
+  redis:
+    image: redis:7.2-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --loglevel warning --requirepass 'p@ss$$12E45'
+    volumes:
+      - ./cache:/data
+  redis-commander:
+    container_name: redis-commander
+    hostname: redis-commander
+    image: ghcr.io/joeferner/redis-commander:latest
+    environment:
+      - REDIS_HOSTS=local:redis:${REDIS_PORT}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=redis:${REDIS_PORT}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+    ports:
+      - '8085:8081'

@@ -1913,6 +1913,11 @@
     mjml "^4.14.1"
     nodemailer "^6.9.4"
 
+"@vendure/job-queue-plugin@^2.1.5":
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/@vendure/job-queue-plugin/-/job-queue-plugin-2.1.5.tgz#8597ea4e5b89c2dec4cd9c38b7ddebc3dd772994"
+  integrity sha512-IdqFtJoe9nZsftNUpOe2qcZytyhJCJ8TikzhYYfZCuvR7B9nvOo/GSoDPABGMVkfhlMd1aOOzzoFGr7S7t8RtA==
+
 abbrev@1, abbrev@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"

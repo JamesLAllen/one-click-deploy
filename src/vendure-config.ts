@@ -5,6 +5,7 @@ import {
     VendureConfig,
 } from '@vendure/core';
 import { defaultEmailHandlers, EmailPlugin } from '@vendure/email-plugin';
+import { BullMQJobQueuePlugin } from '@vendure/job-queue-plugin/package/bullmq'
 import { AssetServerPlugin, configureS3AssetStorage } from '@vendure/asset-server-plugin';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
 import 'dotenv/config';
@@ -93,7 +94,15 @@ export const config: VendureConfig = {
                 },
             }) : undefined,
         }),
-        DefaultJobQueuePlugin.init({ useDatabaseForBuffer: true }),
+        process.env.REDIS_HOST ?  BullMQJobQueuePlugin.init({
+            connection: {
+              port: process.env.REDIS_PORT ? Number(process.env.REDIS_PORT) : 6379,
+              host: process.env.REDIS_HOST ? process.env.REDIS_HOST : 'localhost',
+              password: process.env.REDIS_PASSWORD ? process.env.REDIS_PASSWORD : undefined,
+              tls: process.env.REDIS_TLS === 'true' ? {} : undefined,
+              maxRetriesPerRequest: null,
+            },
+          }) : DefaultJobQueuePlugin.init({ useDatabaseForBuffer: true }),
         DefaultSearchPlugin.init({ bufferUpdates: false, indexStockStatus: true }),
         EmailPlugin.init({
             devMode: true,

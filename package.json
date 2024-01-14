@@ -22,6 +22,7 @@
     "@vendure/core": "^2.1.5",
     "@vendure/create": "^2.1.5",
     "@vendure/email-plugin": "^2.1.5",
+    "@vendure/job-queue-plugin": "^2.1.5",
     "dotenv": "16.3.1",
     "pg": "8.11.3",
     "typescript": "4.9.5"
